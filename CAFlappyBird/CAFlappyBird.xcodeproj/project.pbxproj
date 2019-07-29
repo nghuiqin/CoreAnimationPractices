@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3769B42A22EF2E75007C7106 /* Bird.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3769B42922EF2E75007C7106 /* Bird.swift */; };
 		44BB129E22EE89750019F437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BB129D22EE89750019F437 /* AppDelegate.swift */; };
 		44BB12A022EE89750019F437 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BB129F22EE89750019F437 /* SceneDelegate.swift */; };
 		44BB12A222EE89750019F437 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BB12A122EE89750019F437 /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3769B42922EF2E75007C7106 /* Bird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Bird.swift; path = ../../../../../../../System/Volumes/Data/Users/huiqin/Documents/Github/CoreAnimationPractices/CAFlappyBird/CAFlappyBird/Bird.swift; sourceTree = "<group>"; };
 		44BB129A22EE89750019F437 /* CAFlappyBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAFlappyBird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44BB129D22EE89750019F437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44BB129F22EE89750019F437 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				44BB129D22EE89750019F437 /* AppDelegate.swift */,
 				44BB129F22EE89750019F437 /* SceneDelegate.swift */,
 				44BB12A122EE89750019F437 /* ViewController.swift */,
+				3769B42922EF2E75007C7106 /* Bird.swift */,
 				44BB12A622EE89760019F437 /* Assets.xcassets */,
 				44BB12A822EE89760019F437 /* LaunchScreen.storyboard */,
 				44BB12AB22EE89760019F437 /* Info.plist */,
@@ -198,6 +201,7 @@
 			files = (
 				44BB12A222EE89750019F437 /* ViewController.swift in Sources */,
 				44BB129E22EE89750019F437 /* AppDelegate.swift in Sources */,
+				3769B42A22EF2E75007C7106 /* Bird.swift in Sources */,
 				44BB12A022EE89750019F437 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
