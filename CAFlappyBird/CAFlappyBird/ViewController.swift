@@ -183,6 +183,12 @@ private extension ViewController {
     }
 
     @objc func handleNextFrameState() {
+        let firstPipe = pipes.first!
+        // Count Game Point
+        if state == .running && firstPipe.frame.origin.x + pipeWidth == bird.frame.origin.x {
+            gamePoint += 1
+        }
+        
         CATransaction.begin()
         CATransaction.disableActions()
         // Trigger bird flying animation
@@ -192,35 +198,29 @@ private extension ViewController {
         }
         flyAnimationCounter %= 6
 
-        bird.gravity()
-
-        if bird.frame.origin.y >= UIScreen.main.bounds.height - baseHeight {
-            state = .gameOver
-            return
-        }
-
         pipes.forEach { pipe in
-            pipe.frame.origin.x -= 1
             if pipe.frame.intersects(bird.frame) &&
                 (pipe.frame.intersection(bird.frame).size.width > 10 &&
                 pipe.frame.intersection(bird.frame).size.height > 10) {
                 state = .gameOver
+                return
             }
+            pipe.frame.origin.x -= 1
+        }
+        
+        bird.gravity()
+        if bird.frame.origin.y >= UIScreen.main.bounds.height - baseHeight {
+            state = .gameOver
+            return
         }
         
         // Make pipes infinite
-        let firstPipe = pipes.first!
         if firstPipe.frame.origin.x < -(pipeWidth + 10) {
             pipes[0].removeFromSuperlayer()
             pipes[1].removeFromSuperlayer()
             pipes.removeFirst(2)
             let originX = pipes.last!.frame.origin.x + pipeWidth + pipeHorizontalDistance
             createPipes(atOriginX: originX)
-        }
-        
-        // Count Game Point
-        if state == .running && firstPipe.frame.origin.x + pipeWidth == bird.frame.origin.x {
-            gamePoint += 1
         }
 
         CATransaction.commit()

@@ -9,6 +9,7 @@
 import UIKit
 
 private let birdDropY: CGFloat = 2
+private let birdFlyY: CGFloat = 80
 
 class Bird: CALayer {
     enum State: String {
@@ -51,7 +52,7 @@ class Bird: CALayer {
     }
 
     func fly() {
-        frame.origin.y -= 80
+        frame.origin.y -= birdFlyY
     }
 
     func gravity() {
