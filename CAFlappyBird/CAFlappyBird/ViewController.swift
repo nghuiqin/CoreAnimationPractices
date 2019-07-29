@@ -106,20 +106,33 @@ class ViewController: UIViewController {
 
         let offset: CGFloat = UIScreen.main.bounds.width
         for index in 0..<30 {
-            let height = floor(CGFloat.random(in: pipeMinHeight...pipeMaxHeight))
             let originX = (pipeWidth + pipeHorizontalDistance) * CGFloat(index) + offset
-            let upperPipeLayer = CALayer()
-            let lowerPipeLayer = CALayer()
-            upperPipeLayer.contents = UIImage(named: "pipe-green")?.cgImage
-            lowerPipeLayer.contents = UIImage(named: "pipe-green")?.cgImage
-            upperPipeLayer.frame = CGRect(x: originX, y: height - pipeHeight, width: pipeWidth, height: pipeHeight)
+            let upperPipeVisibleHeight = floor(CGFloat.random(in: pipeMinHeight...pipeMaxHeight))
+            let upperPipeLayer = createPipe(with: CGRect(
+                x: originX,
+                y: upperPipeVisibleHeight - pipeHeight,
+                width: pipeWidth,
+                height: pipeHeight))
             upperPipeLayer.transform = CATransform3DMakeRotation(CGFloat.pi, 0, 0, 1)
-            lowerPipeLayer.frame = CGRect(x: originX, y: height + pipeVerticalDistance, width: pipeWidth, height: pipeHeight)
+            
+            let lowerPipeLayer = createPipe(with: CGRect(
+                x: originX,
+                y: upperPipeVisibleHeight + pipeVerticalDistance,
+                width: pipeWidth,
+                height: pipeHeight))
+            
             view.layer.insertSublayer(upperPipeLayer, below: baseLayer)
             view.layer.insertSublayer(lowerPipeLayer, below: baseLayer)
             pipes.append(upperPipeLayer)
             pipes.append(lowerPipeLayer)
         }
+    }
+    
+    private func createPipe(with frame: CGRect) -> CALayer {
+        let layer = CALayer()
+        layer.contents = UIImage(named: "pipe-green")?.cgImage
+        layer.frame = frame
+        return layer
     }
 
     private func setupGesture() {
