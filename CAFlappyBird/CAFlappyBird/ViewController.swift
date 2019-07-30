@@ -17,7 +17,7 @@ private let baseOriginY = UIScreen.main.bounds.height - baseHeight
 private let pipeWidth: CGFloat = 78
 private let pipeHeight: CGFloat = 480
 private let pipeHorizontalDistance: CGFloat = 180
-private let pipeVerticalDistance: CGFloat = 160
+private let pipeVerticalDistance: CGFloat = 180
 private let pipeMinHeight = UIScreen.main.bounds.height - pipeHeight - baseHeight - pipeVerticalDistance
 private let pipeMaxHeight = pipeHeight
 private let gameOverWidth: CGFloat = 192
@@ -155,7 +155,10 @@ class ViewController: UIViewController {
     @objc func handleTap() {
         switch state {
         case .running:
+            CATransaction.begin()
+            CATransaction.disableActions()
             bird.fly()
+            CATransaction.commit()
 
         case .restart:
             state = .idle
@@ -173,11 +176,11 @@ class ViewController: UIViewController {
 private extension ViewController {
     func startTimer() {
         timer = CADisplayLink(target: self, selector: #selector(handleNextFrameState))
-        timer?.add(to: RunLoop.current, forMode: .default)
+        timer?.add(to: RunLoop.current, forMode: .common)
     }
 
     func stopTimer() {
-        timer?.remove(from: RunLoop.current, forMode: .default)
+        timer?.remove(from: RunLoop.current, forMode: .common)
         timer?.invalidate()
         timer = nil
     }
@@ -191,27 +194,33 @@ private extension ViewController {
         
         CATransaction.begin()
         CATransaction.disableActions()
-        // Trigger bird flying animation
-        flyAnimationCounter += 1
-        if flyAnimationCounter % 6 == 0 {
-            bird.animate()
-        }
-        flyAnimationCounter %= 6
-
         pipes.forEach { pipe in
             if pipe.frame.intersects(bird.frame) &&
-                (pipe.frame.intersection(bird.frame).size.width > 10 &&
-                pipe.frame.intersection(bird.frame).size.height > 10) {
+                (pipe.frame.intersection(bird.frame).size.width > 20 &&
+                pipe.frame.intersection(bird.frame).size.height > 20) {
                 state = .gameOver
+                print("Bird end origin:", bird.frame.origin.y)
                 return
             }
             pipe.frame.origin.x -= 1
         }
         
+        // Trigger bird flying animation
+        flyAnimationCounter += 1
+        if flyAnimationCounter % 6 == 0 {
+            bird.animate()
+        }
+        
+        guard state == .running else {
+            CATransaction.commit()
+            return
+        }
+        
         bird.gravity()
+        flyAnimationCounter %= 6
+        
         if bird.frame.origin.y >= UIScreen.main.bounds.height - baseHeight {
             state = .gameOver
-            return
         }
         
         // Make pipes infinite

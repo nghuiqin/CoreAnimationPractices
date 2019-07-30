@@ -8,19 +8,19 @@
 
 import UIKit
 
-private let birdDropY: CGFloat = 2
-private let birdFlyY: CGFloat = 80
+private let birdDropY: CGFloat = 4
+private let birdFlyY: CGFloat = 100
 
 class Bird: CALayer {
-    enum State: String {
+    enum AnimateState: String {
         case up = "redbird-upflap"
         case mid = "redbird-midflap"
         case down = "redbird-downflap"
     }
 
-    var state: State = .down {
+    var animateState: AnimateState = .down {
         didSet {
-            contents = UIImage(named: state.rawValue)?.cgImage
+            contents = UIImage(named: animateState.rawValue)?.cgImage
         }
     }
 
@@ -39,24 +39,26 @@ class Bird: CALayer {
     }
 
     private func setupViews() {
-        contents = UIImage(named: State.mid.rawValue)?.cgImage
+        contents = UIImage(named: AnimateState.mid.rawValue)?.cgImage
         contentsGravity = .resizeAspectFill
     }
 
     func animate() {
-        switch state {
-        case .up: state = .mid
-        case .mid: state = .down
-        case .down: state = .up
+        switch animateState {
+        case .up: animateState = .mid
+        case .mid: animateState = .down
+        case .down: animateState = .up
         }
     }
 
     func fly() {
         frame.origin.y -= birdFlyY
+//        print("Bird fly:", frame.origin.y)
     }
 
     func gravity() {
         frame.origin.y += birdDropY
+//        print("Bird gravity:", frame.origin.y)
     }
 
     func drop() {
