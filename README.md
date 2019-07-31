@@ -1,5 +1,5 @@
 # CoreAnimationPractices
-These practices are inspired by [Gitbook written by @zonble](https://github.com/baby03201/CoreAnimationPractices/tree/master/LyricsHighlighter)
+These practices are inspired by [Gitbook written by @zonble](https://zonble.gitbooks.io/kkbox-ios-dev/content/core_animation/)
 
 ## Practices
 - [LyricsHighlighter](https://github.com/baby03201/CoreAnimationPractices/tree/master/LyricsHighlighter)
