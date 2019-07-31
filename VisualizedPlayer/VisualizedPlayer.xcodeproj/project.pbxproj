@@ -44,6 +44,7 @@
 		443E515522F052490063637C /* bensound-summer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bensound-summer.mp3"; sourceTree = "<group>"; };
 		443E516022F0596F0063637C /* MeterTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterTable.swift; sourceTree = "<group>"; };
 		443E516E22F1782F0063637C /* DemoSong.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = DemoSong.m4a; sourceTree = "<group>"; };
+		443E517022F17F960063637C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +68,7 @@
 		443E512522F04E610063637C = {
 			isa = PBXGroup;
 			children = (
+				443E517022F17F960063637C /* README.md */,
 				443E513022F04E610063637C /* VisualizedPlayer */,
 				443E514722F04E630063637C /* VisualizedPlayerTests */,
 				443E512F22F04E610063637C /* Products */,
